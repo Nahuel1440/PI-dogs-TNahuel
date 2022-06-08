@@ -1,52 +1,30 @@
-const axios = require("axios");
-const { API_KEY } = process.env;
 const { Breed, Temper } = require("../db");
-//Ver si puedo crear una clase, que pueda instanciar aca, para que directamente tenga en ella el array con todos
-// los breeds que me traiga la API
+const getBreedsApi = require("../helpers/breedsApi");
 
 const getAllBreeds = async (req, res, next) => {
   const { name } = req.query;
-  let baseURL = "https://api.thedogapi.com/v1/breeds",
-    params = {},
-    // ver como mandar solo los attributes que me pide la pag principal  attributes: ["name", "image", "temperament", "weight"]
-    options = {};
-  if (name) {
-    params = { q: `${name}` };
-    baseURL += "/search";
-    options.where = { [Op.substring]: name };
-  }
-  const instance = axios.create({
-    baseURL,
-    headers: { "x-api-key": `${API_KEY}` },
-    params,
-  });
+  let options = name ? { where: { [Op.substring]: name } } : {};
+  // ver como mandar solo los attributes que me pide la pag principal  attributes: ["name", "image", "temperament", "weight"]
   try {
-    const resp = await instance.get(),
-      breedsOfApi = resp.data,
+    const breedsOfApi = await getBreedsApi(name),
       breedsOfDb = await Breed.findAll(options);
     res.json([...breedsOfApi, ...breedsOfDb]);
   } catch (err) {
-    next({ message: err, status: 404 });
+    next({ message: err.message, status: 404 });
   }
 };
 
 const getBreedById = async (req, res, next) => {
   const { idBreed } = req.params;
-  let breed, breeds;
+  let breedFound, breedsOfApi;
   try {
     if (!isNaN(Number(idBreed))) {
-      //VER COMO CREAR LA INSTANCIA PARA QUE NO SE REPITA
-      const instance = axios.create({
-        baseURL: "https://api.thedogapi.com/v1/breeds",
-        headers: { "x-api-key": `${API_KEY}` },
-      });
-      breeds = await instance.get();
-      breed = breeds.data.find((br) => br.id === parseInt(idBreed));
-      console.log(breed);
+      breedsOfApi = await getBreedsApi();
+      breedFound = breedsOfApi.find((br) => br.id === parseInt(idBreed));
     } else {
-      breed = await Breed.findByPk(idBreed);
+      breedFound = await Breed.findByPk(idBreed);
     }
-    if (breed) res.json(breed);
+    if (breedFound) res.json(breedFound);
     else throw new Error("Not found");
   } catch (err) {
     next({ message: err.message, status: 404 });
