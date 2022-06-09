@@ -2,6 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const upTempToDb = require("./helpers/upTempToDb");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 //Se hace la conexion a la db
@@ -47,6 +48,9 @@ const { Breed, Temperament } = sequelize.models;
 // Product.hasMany(Reviews);
 Breed.belongsToMany(Temperament, { through: "breedTemper" });
 Temperament.belongsToMany(Breed, { through: "breedTemper" });
+
+//Guardar los tempers obtenidos de la api en la db
+upTempToDb(Temperament);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
