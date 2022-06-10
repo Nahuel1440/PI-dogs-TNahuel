@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function NavBar() {
   const [clicked, setClicked] = useState(false);
-
   return (
     <Div>
       <Header>
@@ -17,10 +17,19 @@ export default function NavBar() {
       <Menu className={clicked ? "active" : ""}>
         <ul>
           <li>
-            <a href="">Breeds</a>
+            <Link to="/" onClick={() => setClicked(!clicked)}>
+              Home
+            </Link>
           </li>
           <li>
-            <a href="">Create Breeds</a>
+            <Link to="/search" onClick={() => setClicked(!clicked)}>
+              Breeds
+            </Link>
+          </li>
+          <li>
+            <Link to="/create" onClick={() => setClicked(!clicked)}>
+              Create Breeds
+            </Link>
           </li>
         </ul>
       </Menu>
@@ -36,10 +45,9 @@ const Header = styled.header`
   padding: 0px 24px;
   position: fixed;
   background-color: transparent;
-  z-index: 2;
+  z-index: 3;
   & a {
     text-decoration: none;
-    color: white;
     font-size: 25px;
     font-weight: 690;
   }
@@ -66,7 +74,7 @@ const Menu = styled.nav`
   background-color: black;
   position: fixed;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   width: 0px;
   transition: all 0.5s ease;
   & ul {
@@ -76,7 +84,6 @@ const Menu = styled.nav`
       text-align: left;
       display: block;
       text-decoration: none;
-      color: white;
       border-bottom: 1px solid white;
       line-height: 50px;
     }
