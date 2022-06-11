@@ -19,12 +19,12 @@ const breedsApi = async (alldetails = false, name) => {
       id: breed.id,
       name: breed.name,
       temperament: breed.temperament,
-      height: breed.height.metric,
+      weight: breed.weight.metric,
       //No viene image cuando hago la peticion a la ruta /search
       image: breed.image?.url,
     };
     if (alldetails) {
-      obj["weight"] = breed.weight.metric;
+      obj["height"] = breed.height.metric;
       obj["life_span"] = breed.life_span;
     }
     return obj;

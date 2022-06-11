@@ -1,12 +1,12 @@
-const { Breed, Temper } = require("../db");
+const { Op } = require("sequelize");
+const { Breed } = require("../db");
 const getBreedsApi = require("../helpers/breedsApi");
 
 const getAllBreeds = async (req, res, next) => {
   const { name } = req.query;
-  let options = name ? { where: { [Op.substring]: name } } : {};
-  // ver como mandar solo los attributes que me pide la pag principal  attributes: ["name", "image", "temperament", "weight"]
+  let options = name ? { where: { name: { [Op.substring]: name } } } : {};
   try {
-    const breedsOfApi = await getBreedsApi(name),
+    const breedsOfApi = await getBreedsApi(false, name),
       breedsOfDb = await Breed.findAll(options);
     res.json([...breedsOfApi, ...breedsOfDb]);
   } catch (err) {
@@ -19,7 +19,7 @@ const getBreedById = async (req, res, next) => {
   let breedFound, breedsOfApi;
   try {
     if (!isNaN(Number(idBreed))) {
-      breedsOfApi = await getBreedsApi();
+      breedsOfApi = await getBreedsApi(true);
       breedFound = breedsOfApi.find((br) => br.id === parseInt(idBreed));
     } else {
       breedFound = await Breed.findByPk(idBreed);
@@ -36,7 +36,7 @@ const postBreed = async (req, res, next) => {
   const { name, weight, height, life_span, ids } = req.body;
   try {
     const newBreed = await Breed.create({ name, weight, height, life_span });
-    newBreed.addTempers([]);
+    newBreed.addTemperaments([1]);
     res.status(201).json(newBreed);
   } catch (err) {
     next({ message: err, status: 400 });
