@@ -6,12 +6,12 @@ export default function Cards() {
   const breeds = useSelector((state) => state.breeds);
   return (
     <CardsConteiner>
-      {breeds.map((breed) => (
+      {breeds.slice(0, 8).map((breed) => (
         <Card
           key={breed.id}
           image={breed.image}
           name={breed.name}
-          temperaments={breed.temperaments}
+          temperament={breed.temperament}
           weight={breed.weight}
         />
       ))}
@@ -20,7 +20,14 @@ export default function Cards() {
 }
 
 const CardsConteiner = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 30px 30px;
+`;
+
+/* const CardsConteiner = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-`;
+`; */

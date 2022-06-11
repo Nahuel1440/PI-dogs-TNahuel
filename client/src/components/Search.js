@@ -74,6 +74,13 @@ export default function Search() {
         <Section>
           <input type="text" />
           <Cards />
+          <div style={{ height: "100px" }}>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+          </div>
         </Section>
       </Conteiner>
     </Div>
@@ -90,11 +97,12 @@ const Div = styled.div`
 const Conteiner = styled.div`
   display: flex;
   .filterOp {
+    margin-right: 30px;
     padding: 0 20px 20px 20px;
     width: 15%;
     background-color: rgba(255, 255, 255, 0.2);
     @media screen and (max-width: 700px) {
-      max-width: 100%;
+      width: 100%;
     }
   }
   form {

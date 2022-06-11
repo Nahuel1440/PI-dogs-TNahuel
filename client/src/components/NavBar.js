@@ -7,9 +7,9 @@ export default function NavBar() {
   return (
     <Div>
       <Header>
-        <a href="/">
-          Dogs <span>Page</span>
-        </a>
+        <Link to="/" onClick={() => setClicked(false)}>
+          <span>Dogs Page</span>
+        </Link>
         <ButtonMenu onClick={() => setClicked(!clicked)}>
           {clicked ? "x" : "|||"}
         </ButtonMenu>
