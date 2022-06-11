@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getAllBreeds } from "../redux/actions";
+import Cards from "./Cards";
 
 export default function Search() {
   const dispatch = useDispatch();
@@ -9,7 +10,8 @@ export default function Search() {
 
   useEffect(() => {
     dispatch(getAllBreeds());
-  }, []);
+  }, [dispatch]);
+  //Porque necesita usar a dispatch como dependencia???
 
   return (
     <Div>
@@ -71,6 +73,7 @@ export default function Search() {
         </aside>
         <Section>
           <input type="text" />
+          <Cards />
         </Section>
       </Conteiner>
     </Div>
@@ -86,10 +89,9 @@ const Div = styled.div`
 `;
 const Conteiner = styled.div`
   display: flex;
-  border: solid 1px white;
   .filterOp {
     padding: 0 20px 20px 20px;
-    max-width: 20%;
+    width: 15%;
     background-color: rgba(255, 255, 255, 0.2);
     @media screen and (max-width: 700px) {
       max-width: 100%;
