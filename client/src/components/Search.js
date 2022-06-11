@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getAllBreeds } from "../redux/actions";
 
 export default function Search() {
+  const dispatch = useDispatch();
+  const breeds = useSelector((state) => state.breeds);
+
+  useEffect(() => {
+    dispatch(getAllBreeds());
+  }, []);
+
   return (
-    <Section>
-      <h1>Search Breeds</h1>
+    <Div>
+      <h2>Search Breeds</h2>
       {/* <h2>You can search any breed that exist and noexist</h2> */}
+      {/* Ver si es necesario poner Este conteiner o puedo con flex organizar todo sin el*/}
       <Conteiner>
-        <div className="filterDiv">
+        <aside className="filterOp">
           <h3>Filter options</h3>
           <span>Sort by: </span>
           <form action="">
@@ -58,19 +68,18 @@ export default function Search() {
               <label htmlFor="noexist">No-exist</label>
             </div>
           </form>
-        </div>
-        <div></div>
+        </aside>
+        <Section>
+          <input type="text" />
+        </Section>
       </Conteiner>
-    </Section>
+    </Div>
   );
 }
 
-const Section = styled.section`
-  padding: 74px 0 10px 0;
+const Div = styled.div`
+  padding: 80px 0 10px 0;
   margin: 0px 60px 0px 60px;
-  h1 {
-    text-align: start;
-  }
   @media screen and (max-width: 700px) {
     font-size: 15px;
   }
@@ -78,11 +87,13 @@ const Section = styled.section`
 const Conteiner = styled.div`
   display: flex;
   border: solid 1px white;
-  .filterDiv {
-    //En movil seguramente ocupara todo el largo
-    padding: 0 20px 0 20px;
+  .filterOp {
+    padding: 0 20px 20px 20px;
     max-width: 20%;
     background-color: rgba(255, 255, 255, 0.2);
+    @media screen and (max-width: 700px) {
+      max-width: 100%;
+    }
   }
   form {
     display: flex;
@@ -92,3 +103,32 @@ const Conteiner = styled.div`
     flex-direction: column;
   }
 `;
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  input {
+    margin: 10px 0 10px 0;
+    align-self: center;
+  }
+`;
+// const Conteiner = styled.div`
+//   display: flex;
+//   border: solid 1px white;
+//   .filterOp {
+//     border: solid 1px white;
+//     padding: 0 20px 20px 20px;
+//     max-width: 20%;
+//     background-color: rgba(255, 255, 255, 0.2);
+//     @media screen and (max-width: 700px) {
+//       max-width: 100%;
+//     }
+//   }
+//   form {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   @media screen and (max-width: 700px) {
+//     flex-direction: column;
+//   }
+// `;

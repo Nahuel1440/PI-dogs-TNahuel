@@ -10,7 +10,6 @@ const router = Router();
 //Endpoints
 router.get("/", getAllBreeds);
 router.post("/", postBreed);
-router.get("/");
 router.get("/:idBreed", getBreedById);
 
 module.exports = router;
