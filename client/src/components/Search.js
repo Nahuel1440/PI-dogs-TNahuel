@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import useQuery from "../hooks/useQuery";
 import { getAllBreeds } from "../redux/actions";
 import Cards from "./Cards";
+import Navigator from "./Navigator";
 
 export default function Search() {
-  const dispatch = useDispatch();
-  const breeds = useSelector((state) => state.breeds);
+  const querys = useQuery(),
+    currentPage = Number(querys["page"]) || 0,
+    dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllBreeds());
@@ -15,7 +18,10 @@ export default function Search() {
 
   return (
     <Div>
-      <h2>Search Breeds</h2>
+      <div className="searchBar">
+        <h2>Search Breeds</h2>
+        <input type="text" />
+      </div>
       {/* <h2>You can search any breed that exist and noexist</h2> */}
       {/* Ver si es necesario poner Este conteiner o puedo con flex organizar todo sin el*/}
       <Conteiner>
@@ -72,15 +78,8 @@ export default function Search() {
           </form>
         </aside>
         <Section>
-          <input type="text" />
-          <Cards />
-          <div style={{ height: "100px" }}>
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
-          </div>
+          <Cards currentPage={currentPage} />
+          <Navigator currentPage={currentPage} />
         </Section>
       </Conteiner>
     </Div>
@@ -92,6 +91,15 @@ const Div = styled.div`
   margin: 0px 60px 0px 60px;
   @media screen and (max-width: 700px) {
     font-size: 15px;
+  }
+  .searchBar {
+    display: flex;
+    justify-content: space-between;
+    input {
+      align-self: center;
+      padding-left: 5px;
+      padding: 5px 7px 5px 7px;
+    }
   }
 `;
 const Conteiner = styled.div`

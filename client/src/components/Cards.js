@@ -2,11 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Card from "./Card";
-export default function Cards() {
+
+export default function Cards({ currentPage }) {
   const breeds = useSelector((state) => state.breeds);
   return (
     <CardsConteiner>
-      {breeds.slice(0, 8).map((breed) => (
+      {breeds.slice(8 * currentPage, 8 * currentPage + 8).map((breed) => (
         <Card
           key={breed.id}
           image={breed.image}
