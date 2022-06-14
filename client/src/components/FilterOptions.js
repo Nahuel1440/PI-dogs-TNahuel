@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { orderBreedsByName, orderBreedsByWeight } from "../redux/actions";
 
-export default function FilterOption() {
+export default function FilterOption({ setCurrentPage }) {
   const [filter, setFilter] = useState({
     sort: "name",
     order: "ascendent",
@@ -18,6 +18,7 @@ export default function FilterOption() {
     } else {
       dispatch(orderBreedsByWeight(filter));
     }
+    /*  <NavLink to={`/search?page=0`}></NavLink>; */
   }, [filter, dispatch]);
   //Porque necesita usar a dispatch como dependencia???
 
@@ -26,6 +27,7 @@ export default function FilterOption() {
       ...filter,
       [e.target.name]: e.target.value,
     });
+    setCurrentPage(0);
   };
 
   return (
@@ -84,15 +86,34 @@ export default function FilterOption() {
       <span>Type Breed: </span>
       <form action="">
         <div>
-          <input type="radio" name="typeBreed" id="all" defaultChecked={true} />
+          <input
+            type="radio"
+            name="type"
+            id="all"
+            defaultChecked={true}
+            value="all"
+            onChange={handleChange}
+          />
           <label htmlFor="all">All</label>
         </div>
         <div>
-          <input type="radio" name="typeBreed" id="exist" />
+          <input
+            type="radio"
+            name="type"
+            id="exist"
+            value="exist"
+            onChange={handleChange}
+          />
           <label htmlFor="exist">Exist</label>
         </div>
         <div>
-          <input type="radio" name="typeBreed" id="noexist" />
+          <input
+            type="radio"
+            name="type"
+            id="noexist"
+            value="noexist"
+            onChange={handleChange}
+          />
           <label htmlFor="noexist">No-exist</label>
         </div>
       </form>

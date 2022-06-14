@@ -11,7 +11,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/search" component={Search} />
       <Route path="/create" component={BreedCreate} />
-      <Route path="/details" component={Home} />
+      <Route path="/details/:id" component={Home} />
     </div>
   );
 }

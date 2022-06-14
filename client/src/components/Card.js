@@ -51,7 +51,7 @@ const ConteinerCard = styled.div`
       padding: 5px 0 5px 0;
     }
   }
-  @media screen and (max-width: 700px) {
+  /*  @media screen and (max-width: 700px) {
     flex-direction: row;
-  }
+  } */
 `;

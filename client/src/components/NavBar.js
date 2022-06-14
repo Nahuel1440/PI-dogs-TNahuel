@@ -7,7 +7,13 @@ export default function NavBar() {
   return (
     <Div>
       <Header>
-        <Link to="/" onClick={() => setClicked(false)}>
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo(0, 0);
+            setClicked(false);
+          }}
+        >
           <span>Dogs Page</span>
         </Link>
         <ButtonMenu onClick={() => setClicked(!clicked)}>
@@ -17,7 +23,13 @@ export default function NavBar() {
       <Menu className={clicked ? "active" : ""}>
         <ul>
           <li>
-            <Link to="/" onClick={() => setClicked(!clicked)}>
+            <Link
+              to="/"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setClicked(false);
+              }}
+            >
               Home
             </Link>
           </li>
