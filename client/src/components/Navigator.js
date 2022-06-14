@@ -1,47 +1,43 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 
-export default function Navigator({ currentPage }) {
+export default function Navigator({ currentPage, setCurrentPage }) {
   const breeds = useSelector((state) => state.breeds);
   //modularizar
   const cantPages = Math.ceil(breeds.length / 8),
     arrPages = new Array(cantPages).fill(1);
+
+  const handlePage = (page) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <Conteiner>
       <ul>
         {cantPages > 0 && currentPage > 0 ? (
           <li key={"prev"}>
-            <NavLink
-              to={`/search?page=${currentPage - 1}`}
-              isActive={() => false}
-              //Por qué al definir este elemento funciona automaticamente en todos los demas NavLink?
-              onClick={window.scrollTo(0, 0)}
-            >
+            <button onClick={() => handlePage(currentPage - 1)}>
               {"<Prev"}
-            </NavLink>
+            </button>
           </li>
         ) : null}
         {arrPages.map((page, i) => (
           <li key={i}>
-            <NavLink
-              to={`/search?page=${i}`}
-              isActive={() => (currentPage === i ? true : false)}
+            <button
+              onClick={() => handlePage(i)}
+              className={currentPage === i ? "active" : ""}
             >
               {i}
-            </NavLink>
+            </button>
           </li>
         ))}
         {cantPages > 0 && currentPage < cantPages - 1 ? (
           <li key={"next"}>
-            <NavLink
-              to={`/search?page=${currentPage + 1}`}
-              isActive={() => false}
-            >
+            <button onClick={() => handlePage(currentPage + 1)}>
               {"Next>"}
-            </NavLink>
+            </button>
           </li>
         ) : null}
       </ul>
@@ -65,11 +61,15 @@ const Conteiner = styled.div`
     li {
       display: inline;
     }
-    a {
-      text-decoration: none;
+    button {
+      background-color: transparent;
+      color: white;
+      border: none;
       padding-left: 10px;
       padding-right: 10px;
-
+      font-size: 15px;
+      font-family: sans-serif;
+      cursor: pointer;
       &:hover {
         background-color: rgba(255, 255, 255, 0.1);
       }
