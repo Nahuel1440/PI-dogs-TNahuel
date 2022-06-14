@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 export default function Navigator({ currentPage }) {
   const breeds = useSelector((state) => state.breeds);
@@ -13,17 +14,34 @@ export default function Navigator({ currentPage }) {
       <ul>
         {cantPages > 0 && currentPage > 0 ? (
           <li key={"prev"}>
-            <a href={`/search?page=${currentPage - 1}`}>{"<Prev"}</a>
+            <NavLink
+              to={`/search?page=${currentPage - 1}`}
+              isActive={() => false}
+              //Por qué al definir este elemento funciona automaticamente en todos los demas NavLink?
+              onClick={window.scrollTo(0, 0)}
+            >
+              {"<Prev"}
+            </NavLink>
           </li>
         ) : null}
         {arrPages.map((page, i) => (
           <li key={i}>
-            <a href={`/search?page=${i}`}>{i}</a>
+            <NavLink
+              to={`/search?page=${i}`}
+              isActive={() => (currentPage === i ? true : false)}
+            >
+              {i}
+            </NavLink>
           </li>
         ))}
         {cantPages > 0 && currentPage < cantPages - 1 ? (
           <li key={"next"}>
-            <a href={`/search?page=${currentPage + 1}`}>{"Next>"}</a>
+            <NavLink
+              to={`/search?page=${currentPage + 1}`}
+              isActive={() => false}
+            >
+              {"Next>"}
+            </NavLink>
           </li>
         ) : null}
       </ul>
@@ -39,7 +57,10 @@ const Conteiner = styled.div`
     display: inline-block;
     margin-top: 45px;
     .active {
-      color: red;
+      background-color: rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+      cursor: default;
+      font-weight: 600;
     }
     li {
       display: inline;
@@ -50,7 +71,7 @@ const Conteiner = styled.div`
       padding-right: 10px;
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
       }
     }
   }
