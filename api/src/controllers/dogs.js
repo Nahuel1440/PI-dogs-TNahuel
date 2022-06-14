@@ -1,10 +1,14 @@
 const { Op } = require("sequelize");
-const { Breed } = require("../db");
+const { Breed, Temperament } = require("../db");
 const getBreedsApi = require("../helpers/breedsApi");
 
 const getAllBreeds = async (req, res, next) => {
   const { name } = req.query;
   let options = name ? { where: { name: { [Op.substring]: name } } } : {};
+  options.include = {
+    model: Temperament,
+    attributes: ["name"],
+  };
   try {
     const breedsOfApi = await getBreedsApi(false, name),
       breedsOfDb = await Breed.findAll(options);
@@ -33,10 +37,16 @@ const getBreedById = async (req, res, next) => {
 
 const postBreed = async (req, res, next) => {
   //ids es un array con las ids de los temperamentos a agregar
-  const { name, weight, height, life_span, ids } = req.body;
+  const { name, weight, height, life_span, image, ids } = req.body;
   try {
-    const newBreed = await Breed.create({ name, weight, height, life_span });
-    newBreed.addTemperaments([1]);
+    const newBreed = await Breed.create({
+      name,
+      weight,
+      height,
+      life_span,
+      image,
+    });
+    newBreed.addTemperaments(ids);
     res.status(201).json(newBreed);
   } catch (err) {
     next({ message: err, status: 400 });
