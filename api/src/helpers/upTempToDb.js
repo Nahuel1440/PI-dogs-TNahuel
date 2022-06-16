@@ -6,7 +6,8 @@ const upTempToDb = async (Temperament) => {
     arrTempers.sort((a, b) => (a.name > b.name ? 1 : -1));
     await Temperament.bulkCreate(arrTempers);
   } catch (err) {
-    console.log("Error: No se pudo cargar los temperamentos de la api a la db");
+    // console.log("Error: No se pudo cargar los temperamentos de la api a la db");
+    console.log(err.message);
   }
 };
 

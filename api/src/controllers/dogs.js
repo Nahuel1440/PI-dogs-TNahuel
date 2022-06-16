@@ -5,9 +5,7 @@ const capitalize = require("../helpers/capitalize");
 
 const getAllBreeds = async (req, res, next) => {
   const { name } = req.query;
-  let options = name
-    ? { where: { name: { [Op.substring]: capitalize(name) } } }
-    : {};
+  let options = name ? { where: { name: { [Op.iLike]: `%${name}%` } } } : {};
   options.include = {
     model: Temperament,
     attributes: ["name"],
@@ -54,10 +52,10 @@ const postBreed = async (req, res, next) => {
       life_span,
       image,
     });
-    newBreed.addTemperaments(ids);
+    await newBreed.addTemperaments(ids);
     res.status(201).json(newBreed);
   } catch (err) {
-    next({ message: err, status: 400 });
+    next({ message: err.message, status: 400 });
   }
 };
 
