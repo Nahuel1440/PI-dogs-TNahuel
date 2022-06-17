@@ -1,4 +1,11 @@
-import { GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "../actions";
+import {
+  GET_ALL_BREEDS,
+  ORDER_BY_NAME,
+  ORDER_BY_WEIGHT,
+  GET_BREED,
+  GET_TEMPERAMENTS,
+  FILTER_BY_TEMP,
+} from "../actions";
 import { sortByName, sortByWeight } from "./helpers/sorts";
 
 const initialStore = {
@@ -6,6 +13,7 @@ const initialStore = {
   breedsCreated: [],
   breedsExist: [],
   breed: {},
+  temperaments: [],
 };
 
 const rootReducer = (state = initialStore, action) => {
@@ -44,6 +52,28 @@ const rootReducer = (state = initialStore, action) => {
             : action.payload.type === "exist"
             ? sortByWeight(state.breedsExist, action.payload.order)
             : sortByWeight(state.breedsCreated, action.payload.order),
+      };
+    case GET_BREED:
+      return {
+        ...state,
+        breed: action.payload,
+      };
+    case GET_TEMPERAMENTS:
+      return {
+        ...state,
+        temperaments: action.payload,
+      };
+    case FILTER_BY_TEMP:
+      return {
+        ...state,
+        breeds: state.breeds.filter((breed) => {
+          const tempArr = breed.temperament?.split(", ");
+          const condition = action.payload.every((temp) =>
+            tempArr.includes(temp)
+          );
+          if (condition) return true;
+          else return false;
+        }),
       };
     default:
       return state;

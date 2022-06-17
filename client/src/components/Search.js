@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { getAllBreeds } from "../redux/actions";
+import { getAllBreeds, getTemperaments } from "../redux/actions";
 import Cards from "./Cards";
 import FilterOption from "./FilterOptions";
 import Navigator from "./Navigator";
@@ -15,6 +15,7 @@ export default function Search() {
   //Deberia ejecutarse solo una vez
   useEffect(() => {
     dispatch(getAllBreeds());
+    dispatch(getTemperaments());
   }, [dispatch]);
 
   const handleSubmit = (e) => {
@@ -32,6 +33,13 @@ export default function Search() {
             placeholder="Enter breed name"
             value={breedName}
             onChange={(e) => setBreedName(e.target.value)}
+            pattern="[A-Za-z\s]{0,30}"
+            onInvalid={(e) => {
+              e.target.setCustomValidity(
+                "The name breed should only contains letters."
+              );
+            }}
+            onInput={(e) => e.target.setCustomValidity("")}
           />
         </form>
       </div>
@@ -64,6 +72,9 @@ const Div = styled.div`
     input {
       padding-left: 5px;
       padding: 5px 7px 5px 7px;
+      &:invalid {
+        border-color: red;
+      }
     }
     @media screen and (max-width: 700px) {
       flex-direction: column;
