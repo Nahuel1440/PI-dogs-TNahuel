@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import postBreed from "../services/postBreed";
 
 export default function FormBreed() {
   const [form, setForm] = useState({
@@ -20,8 +21,9 @@ export default function FormBreed() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleCheck = (e) => {
-    const tempId = Number(e.target.value);
-    if (!form.temperaments.includes(tempId)) {
+    const tempId = Number(e.target.value),
+      includeInForm = form.temperaments.includes(tempId);
+    if (!includeInForm) {
       setForm({
         ...form,
         temperaments: [...form.temperaments, tempId],
@@ -33,7 +35,6 @@ export default function FormBreed() {
       });
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -45,16 +46,7 @@ export default function FormBreed() {
       data["life_span"] = `${form.life_min} - ${form.life_max} years`;
     if (form.image) data["image"] = form.image;
     if (form.temperaments.length > 0) data["ids"] = form.temperaments;
-    fetch("http://localhost:3001/dogs", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((breed) => console.log("Success: breed created", breed))
-      .catch((error) => console.log("Error:", error));
+    postBreed(data);
   };
 
   return (

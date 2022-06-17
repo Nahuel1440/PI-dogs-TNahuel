@@ -8,9 +8,11 @@ export default function Details() {
   const { id } = useParams(),
     dispatch = useDispatch(),
     breed = useSelector((state) => state.breed);
+
   useEffect(() => {
     dispatch(getBreed(id));
   }, [dispatch, id]);
+
   return (
     <>
       <MainConteiner>

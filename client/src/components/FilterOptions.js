@@ -8,7 +8,6 @@ import {
 } from "../redux/actions";
 
 export default function FilterOption({ setCurrentPage }) {
-  const temperaments = useSelector((state) => state.temperaments);
   const [filter, setFilter] = useState({
     sort: "name",
     order: "ascendent",
@@ -16,6 +15,7 @@ export default function FilterOption({ setCurrentPage }) {
     temperaments: [],
   });
   const dispatch = useDispatch();
+  const temperaments = useSelector((state) => state.temperaments);
 
   useEffect(() => {
     if (filter.sort === "name") {
@@ -39,8 +39,9 @@ export default function FilterOption({ setCurrentPage }) {
   };
 
   const handleCheck = (e) => {
-    const tempName = e.target.value;
-    if (!filter.temperaments.includes(tempName)) {
+    const tempName = e.target.value,
+      includeInFilter = filter.temperaments.includes(tempName);
+    if (!includeInFilter) {
       setFilter({
         ...filter,
         temperaments: [...filter.temperaments, tempName],
@@ -62,22 +63,22 @@ export default function FilterOption({ setCurrentPage }) {
           <input
             type="radio"
             name="sort"
-            id="name"
+            id="nameInput"
             value="name"
             defaultChecked={true}
             onChange={handleChange}
           />
-          <label htmlFor="name">Name</label>
+          <label htmlFor="nameInput">Name</label>
         </div>
         <div>
           <input
             type="radio"
             name="sort"
-            id="weight"
+            id="weightInput"
             value="weight"
             onChange={handleChange}
           />
-          <label htmlFor="weight">Weight</label>
+          <label htmlFor="weightInput">Weight</label>
         </div>
       </div>
       <hr />
@@ -87,22 +88,22 @@ export default function FilterOption({ setCurrentPage }) {
           <input
             type="radio"
             name="order"
-            id="ascendent"
+            id="ascendentInput"
             value="ascendent"
             defaultChecked={true}
             onChange={handleChange}
           />
-          <label htmlFor="ascendent">Ascendent</label>
+          <label htmlFor="ascendentInput">Ascendent</label>
         </div>
         <div>
           <input
             type="radio"
             name="order"
-            id="descendent"
+            id="descendentInput"
             value="descendent"
             onChange={handleChange}
           />
-          <label htmlFor="descendent">Descendent</label>
+          <label htmlFor="descendentInput">Descendent</label>
         </div>
       </div>
       <hr />
@@ -112,32 +113,32 @@ export default function FilterOption({ setCurrentPage }) {
           <input
             type="radio"
             name="type"
-            id="all"
+            id="allInput"
             defaultChecked={true}
             value="all"
             onChange={handleChange}
           />
-          <label htmlFor="all">All</label>
+          <label htmlFor="allInput">All</label>
         </div>
         <div>
           <input
             type="radio"
             name="type"
-            id="exist"
+            id="existInput"
             value="exist"
             onChange={handleChange}
           />
-          <label htmlFor="exist">Exist</label>
+          <label htmlFor="existInput">Exist</label>
         </div>
         <div>
           <input
             type="radio"
             name="type"
-            id="noexist"
+            id="noExistInput"
             value="noexist"
             onChange={handleChange}
           />
-          <label htmlFor="noexist">No-exist</label>
+          <label htmlFor="noExistInput">No-exist</label>
         </div>
       </div>
       <hr />

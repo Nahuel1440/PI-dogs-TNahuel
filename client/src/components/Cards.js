@@ -39,9 +39,3 @@ const CardsConteiner = styled.div`
     grid-template-rows: repeat(8, auto);
   }
 `;
-
-/* const CardsConteiner = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-`; */

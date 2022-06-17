@@ -67,12 +67,15 @@ const rootReducer = (state = initialStore, action) => {
       return {
         ...state,
         breeds: state.breeds.filter((breed) => {
-          const tempArr = breed.temperament?.split(", ");
-          const condition = action.payload.every((temp) =>
-            tempArr.includes(temp)
-          );
-          if (condition) return true;
-          else return false;
+          const breedTemp = breed.temperament;
+          if (breedTemp) {
+            const tempArr = breedTemp.split(", ");
+            const condition = action.payload.every((temp) =>
+              tempArr.includes(temp)
+            );
+            if (condition) return true;
+          }
+          return false;
         }),
       };
     default:
