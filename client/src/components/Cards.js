@@ -11,6 +11,7 @@ export default function Cards({ currentPage }) {
         <CardsConteiner>
           {breeds.slice(8 * currentPage, 8 * currentPage + 8).map((breed) => (
             <Card
+              id={breed.id}
               key={breed.id}
               image={breed.image}
               name={breed.name}
@@ -34,7 +35,8 @@ const CardsConteiner = styled.div`
   grid-template-rows: repeat(3, auto);
   gap: 30px 30px;
   @media screen and (max-width: 700px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(8, auto);
   }
 `;
 
