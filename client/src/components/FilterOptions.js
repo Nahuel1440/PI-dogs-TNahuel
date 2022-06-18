@@ -165,6 +165,7 @@ export default function FilterOption({ setCurrentPage }) {
 }
 
 const AsideBar = styled.aside`
+  border-radius: 5px;
   margin-right: 30px;
   padding: 0 20px 20px 20px;
   width: 20%;
