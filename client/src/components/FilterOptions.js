@@ -52,6 +52,7 @@ export default function FilterOption({ setCurrentPage }) {
         temperaments: filter.temperaments.filter((temp) => temp !== tempName),
       });
     }
+    setCurrentPage(0);
   };
 
   return (
