@@ -59,7 +59,7 @@ const postBreed = async (req, res, next) => {
       life_span,
       image,
     });
-    await newBreed.addTemperaments(ids);
+    await newBreed.addTemperament(ids);
     res.status(201).json(newBreed);
   } catch (err) {
     next({ message: err.message, status: 400 });
