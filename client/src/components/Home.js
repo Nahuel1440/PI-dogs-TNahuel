@@ -20,7 +20,7 @@ export default function Home() {
 }
 const fadeIn = keyframes`
     0%{
-        opacity: 5;
+        opacity: 10;
     }
     100%{
         opacity: 0.2;
