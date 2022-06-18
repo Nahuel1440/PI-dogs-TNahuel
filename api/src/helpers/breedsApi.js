@@ -11,9 +11,8 @@ const getBreedsApi = async (alldetails = false, name) => {
     const obj = {
       id: breed.id,
       name: breed.name,
-      temperament: breed.temperament || "This dog's temperaments are a mystery",
+      temperament: breed.temperament,
       weight: breed.weight.metric?.replace("NaN", "3"),
-      //No viene image cuando hago la peticion a la ruta /search
       image: breed.image?.url,
     };
     if (alldetails) {

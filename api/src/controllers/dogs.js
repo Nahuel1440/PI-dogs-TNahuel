@@ -1,19 +1,26 @@
 const { Op } = require("sequelize");
 const { Breed, Temperament } = require("../db");
 const getBreedsApi = require("../helpers/breedsApi");
-const capitalize = require("../helpers/capitalize");
+const normalizeTemper = require("../helpers/normalizeTemper");
 
 const getAllBreeds = async (req, res, next) => {
   const { name } = req.query;
-  let options = name ? { where: { name: { [Op.iLike]: `%${name}%` } } } : {};
-  options.include = {
-    model: Temperament,
-    attributes: ["name"],
+  const optOfFindAll = {
+    include: {
+      model: Temperament,
+      as: "temperament",
+      attributes: ["name"],
+      through: { attributes: [] },
+    },
   };
+  if (name) {
+    optOfFindAll.where = { name: { [Op.iLike]: `%${name}%` } };
+  }
   try {
-    const breedsOfApi = await getBreedsApi(false, name),
-      breedsOfDb = await Breed.findAll(options),
-      allBreeds = [...breedsOfApi, ...breedsOfDb];
+    const breedsOfApi = await getBreedsApi(false, name);
+    let breedsOfDb = await Breed.findAll(optOfFindAll);
+    breedsOfDb = normalizeTemper(breedsOfDb);
+    allBreeds = [...breedsOfApi, ...breedsOfDb];
     if (allBreeds.length) {
       res.json(allBreeds);
     } else {

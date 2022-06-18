@@ -46,7 +46,7 @@ const { Breed, Temperament } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Breed.belongsToMany(Temperament, { through: "breedTemper" });
+Breed.belongsToMany(Temperament, { through: "breedTemper", as: "temperament" });
 Temperament.belongsToMany(Breed, { through: "breedTemper" });
 
 //Guardar los tempers obtenidos de la api en la db
