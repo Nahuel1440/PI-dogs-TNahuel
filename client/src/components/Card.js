@@ -13,7 +13,11 @@ export default function Card(props) {
           <hr />
           <div>
             <span>
-              <b>Temperaments:</b> <br /> {props.temperament}.
+              <b>Temperaments:</b>
+              <br />
+              {props.temperament
+                ? `${props.temperament}.`
+                : "Under investigation.."}
             </span>
           </div>
           <div>
