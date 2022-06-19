@@ -7,8 +7,14 @@ const postBreed = (data) => {
     },
   })
     .then((response) => response.json())
-    .then((breed) => console.log("Success: breed created", breed))
-    .catch((error) => console.log("Error:", error));
+    .then((breed) => {
+      alert("Success: breed created");
+      console.log(breed);
+    })
+    .catch((error) => {
+      alert(error);
+      console.log("Error:", error);
+    });
 };
 
 export default postBreed;

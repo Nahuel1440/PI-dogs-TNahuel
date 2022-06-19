@@ -13,7 +13,7 @@ export default function BreedCreate() {
   return (
     <MainConteiner>
       <FormConteiner>
-        <h1>Breed Form</h1>
+        <h1>---- Breed Form ----</h1>
         <FormBreed />
       </FormConteiner>
     </MainConteiner>
