@@ -55,7 +55,7 @@ const Header = styled.header`
   top: 20px;
   width: 100%;
   padding: 0px 24px;
-  position: fixed;
+  position: absolute;
   background-color: transparent;
   z-index: 3;
   & a {

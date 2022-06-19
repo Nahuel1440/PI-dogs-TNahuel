@@ -170,7 +170,6 @@ const AsideBar = styled.aside`
   padding: 0 20px 20px 20px;
   width: 20%;
   background-color: rgba(70, 70, 70, 255);
-  z-index: 4;
   @media screen and (max-width: 700px) {
     width: 100%;
   }
