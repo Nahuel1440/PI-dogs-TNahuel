@@ -14,7 +14,7 @@ export default function Home() {
           </header>
         </div>
         <a href="#2" className="btnMove">
-          <button>▽</button>
+          <button>🡳</button>
         </a>
       </Section>
       <Section id="2" style={{ backgroundImage: `url(${img4})` }}>
@@ -30,7 +30,7 @@ export default function Home() {
           </Link>
         </IntroConteiner>
         <a href="#3" className="btnMove">
-          <button>▽</button>
+          <button>🡳</button>
         </a>
       </Section>
       <Section id="3" style={{ backgroundImage: `url(${img3})` }}>
@@ -46,7 +46,7 @@ export default function Home() {
           </Link>
         </IntroConteiner>
         <a href="#1" className="btnMove">
-          <button>△</button>
+          <button>🡱</button>
         </a>
       </Section>
     </>
@@ -107,12 +107,12 @@ const Section = styled.section`
       height: 40px;
       font-size: 20px;
       color: white;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: none;
+      background-color: transparent;
+      border: 1px solid white;
       border-radius: 50px;
       cursor: pointer;
       &:hover {
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0.1);
         border: 1px solid white;
       }
     }

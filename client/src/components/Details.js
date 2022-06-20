@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getBreed } from "../redux/actions";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 export default function Details() {
   const { id } = useParams(),
     dispatch = useDispatch(),
@@ -17,31 +17,88 @@ export default function Details() {
     <>
       <MainConteiner>
         <CardDetails>
+          <Link to="/search">
+            <button>🢀</button>
+          </Link>
           <img src={breed.image} alt="" />
+          <div className="infoConteiner">
+            <h1>{breed.name}</h1>
+            <div>
+              <span>
+                <b>Height: </b>
+                <br />
+                {breed.height} cm
+              </span>
+            </div>
+            <br />
+            <div>
+              <span>
+                <b>Weight: </b>
+                <br />
+                {breed.weight} kg
+              </span>
+            </div>
+            <br />
+            <div>
+              <span>
+                <b>Life Expectancy: </b>
+                <br />
+                {breed.life_span}
+              </span>
+            </div>
+            <br />
+            <div>
+              <span>
+                <b>Temperaments: </b>
+                <br />
+                {breed.temperament}
+              </span>
+            </div>
+          </div>
         </CardDetails>
       </MainConteiner>
     </>
   );
 }
+
 const MainConteiner = styled.div`
-  padding-top: 120px;
-  margin: 0 60px 0 60px;
+  padding-top: 160px;
+  margin: 0 180px 0 180px;
+  @media screen and (max-width: 700px) {
+    margin: 0 20px 0 20px;
+  }
 `;
 
 const CardDetails = styled.div`
   display: flex;
-  margin: 0 30px 0 30px;
-  border: solid 1px white;
-  height: 480px;
-  border-radius: 30px;
+  border: solid 2px white;
+  border-radius: 5px;
+  .infoConteiner {
+    padding: 10px 30px 30px 30px;
+  }
   img {
-    margin-left: 35px;
-    align-self: center;
-    height: 400px;
-    width: 550px;
-    border-radius: 30px;
+    max-height: 400px;
+    max-width: 50%;
+    object-fit: cover;
+    border-radius: 5px 0 0 5px;
   }
   @media screen and (max-width: 700px) {
-    flex-direction: column;
+    .infoConteiner {
+      font-size: 12px;
+    }
+  }
+  button {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    cursor: pointer;
+    color: white;
+    &:hover {
+      background-color: black;
+    }
   }
 `;
