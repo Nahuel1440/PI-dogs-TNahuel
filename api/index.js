@@ -19,10 +19,10 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js"); // la app de express server=express()
 const { conn } = require("./src/db.js"); // Es la instancia de sequelize
-
+const { URL } = process.env;
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(URL, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });
