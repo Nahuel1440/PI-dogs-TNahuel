@@ -24,6 +24,12 @@ const validate = (form) => {
   } else {
     errors.weight_max = "max weight is required";
   }
+  if (form.weight_min && form.weight_max) {
+    if (form.weight_min >= form.weight_max) {
+      errors.weight_min = "min weight must be less than weight max";
+      errors.weight_max = "max weight must be greater than <w></w>eight min";
+    }
+  }
 
   if (form.height_min) {
     if (!regexNum.test(form.height_min))
@@ -39,6 +45,13 @@ const validate = (form) => {
     errors.height_max = "max height is required";
   }
 
+  if (form.height_min && form.height_max) {
+    if (form.height_min >= form.height_max) {
+      errors.height_min = "min height must be less than height max";
+      errors.height_max = "max height must be greater than height min";
+    }
+  }
+
   if (form.life_min || form.life_max) {
     if (!regexNum.test(form.life_min))
       errors.life_min = "min life should only contains numbers";
@@ -48,6 +61,12 @@ const validate = (form) => {
       if (!form.life_min) {
         errors.life_max = "life min is required";
       }
+    }
+  }
+  if (form.life_min && form.life_max) {
+    if (form.life_min >= form.life_max) {
+      errors.life_min = "min life must be less than life max";
+      errors.life_max = "max life must be greater than life min";
     }
   }
 
