@@ -44,9 +44,11 @@ const ConteinerCard = styled.div`
   }
   img {
     width: 100%;
-    height: 300px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    aspect-ratio: 1.2/1;
+    object-fit: cover;
+    object-position: 35% 5%;
   }
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1.5);

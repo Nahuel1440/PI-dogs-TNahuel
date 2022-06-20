@@ -37,5 +37,6 @@ const CardsConteiner = styled.div`
   @media screen and (max-width: 700px) {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(8, auto);
+    padding-top: 30px;
   }
 `;
