@@ -39,7 +39,15 @@ const getBreedById = async (req, res, next) => {
       breedsOfApi = await getBreedsApi(true);
       breedFound = breedsOfApi.find((br) => br.id === parseInt(idBreed));
     } else {
-      breedFound = await Breed.findByPk(idBreed);
+      breedFound = await Breed.findByPk(idBreed, {
+        include: {
+          model: Temperament,
+          as: "temperament",
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      });
+      [breedFound] = normalizeTemper([breedFound]);
     }
     if (breedFound) res.json(breedFound);
     else throw new Error("Not found");
