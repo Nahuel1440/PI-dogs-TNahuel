@@ -20,7 +20,7 @@ export default function Details() {
           <Link to="/search">
             <button>🢀</button>
           </Link>
-          <img src={breed.image} alt="" />
+          <img src={breed.image} alt="None" />
           <div className="infoConteiner">
             <h1>{breed.name}</h1>
             <div>
@@ -43,7 +43,7 @@ export default function Details() {
               <span>
                 <b>Life Expectancy: </b>
                 <br />
-                {breed.life_span}
+                {breed.life_span ? breed.life_span : "Under investigation."}
               </span>
             </div>
             <br />
@@ -51,7 +51,7 @@ export default function Details() {
               <span>
                 <b>Temperaments: </b>
                 <br />
-                {breed.temperament}
+                {breed.temperament ? breed.temperament : "Under investigation."}
               </span>
             </div>
           </div>
@@ -77,8 +77,9 @@ const CardDetails = styled.div`
     padding: 10px 30px 30px 30px;
   }
   img {
-    max-height: 400px;
-    max-width: 50%;
+    text-align: center;
+    height: 400px;
+    width: 50%;
     object-fit: cover;
     border-radius: 5px 0 0 5px;
   }
