@@ -21,9 +21,10 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getAllBreeds(breedName));
-    setCurrentPage(0);
-    refForm.current.reset();
+    dispatch(getAllBreeds(breedName)).then(() => {
+      setCurrentPage(0);
+      refForm.current.reset();
+    });
   };
 
   return (
