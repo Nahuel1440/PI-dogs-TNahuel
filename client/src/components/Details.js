@@ -89,10 +89,9 @@ const CardDetails = styled.div`
   min-height: 400px;
   img {
     text-align: center;
-    height: 400px;
     width: 50%;
     object-fit: cover;
-    border-radius: 5px 0 0 5px;
+    aspect-ratio: 1.2/1;
   }
   button {
     font-size: 20px;
