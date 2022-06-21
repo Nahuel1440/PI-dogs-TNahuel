@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { getAllBreeds, getTemperaments } from "../redux/actions";
@@ -9,7 +10,7 @@ import Navigator from "./Navigator";
 export default function Search() {
   const [breedName, setBreedName] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-
+  const refForm = useRef();
   const dispatch = useDispatch();
 
   //Deberia ejecutarse solo una vez
@@ -22,7 +23,9 @@ export default function Search() {
     e.preventDefault();
     dispatch(getAllBreeds(breedName));
     setCurrentPage(0);
+    refForm.current.reset();
   };
+
   return (
     <Div>
       <div className="searchBar">
@@ -44,7 +47,7 @@ export default function Search() {
         </form>
       </div>
       <Conteiner>
-        <FilterOption setCurrentPage={setCurrentPage} />
+        <FilterOption setCurrentPage={setCurrentPage} refForm={refForm} />
         <Section>
           <Cards currentPage={currentPage} />
           <Navigator
