@@ -4,6 +4,7 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const FILTER_BY_TEMP = "FILTER_BY_TEMP";
+export const CLEAR_BREED = "CLEAR_BREED";
 
 export const getAllBreeds =
   (name = "") =>
@@ -47,5 +48,11 @@ export const filterByTemp = (temps) => {
   return {
     type: FILTER_BY_TEMP,
     payload: temps,
+  };
+};
+
+export const clearBreed = () => {
+  return {
+    type: CLEAR_BREED,
   };
 };

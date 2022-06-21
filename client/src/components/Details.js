@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getBreed } from "../redux/actions";
+import { clearBreed, getBreed } from "../redux/actions";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 export default function Details() {
@@ -11,6 +11,9 @@ export default function Details() {
 
   useEffect(() => {
     dispatch(getBreed(id));
+    return () => {
+      dispatch(clearBreed());
+    };
   }, [dispatch, id]);
 
   return (

@@ -70,12 +70,9 @@ const Section = styled.section`
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  /* background-repeat: no-repeat; */
   height: 100%;
   min-height: 100vh;
   position: relative;
-  /* overflow: hidden;
-  border-top: 0; */
   @media screen and (max-width: 700px) {
     background-attachment: scroll;
   }

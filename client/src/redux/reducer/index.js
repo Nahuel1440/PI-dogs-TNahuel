@@ -5,6 +5,7 @@ import {
   GET_BREED,
   GET_TEMPERAMENTS,
   FILTER_BY_TEMP,
+  CLEAR_BREED,
 } from "../actions";
 import { sortByName, sortByWeight } from "./helpers/sorts";
 
@@ -77,6 +78,11 @@ const rootReducer = (state = initialStore, action) => {
           }
           return false;
         }),
+      };
+    case CLEAR_BREED:
+      return {
+        ...state,
+        breed: {},
       };
     default:
       return state;
