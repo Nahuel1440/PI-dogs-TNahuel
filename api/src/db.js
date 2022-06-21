@@ -5,7 +5,7 @@ const path = require("path");
 const upTempToDb = require("./helpers/upTempToDb");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-sequelize = new Sequelize(
+/* sequelize = new Sequelize(
   "postgres://glbhsqoebfoyge:2dc7e248996608de73174d004d06e9a89e06cfc98cdcd585a10e398920acf531@ec2-34-198-186-145.compute-1.amazonaws.com:5432/dduahkgqrgracl",
   {
     dialectOptions: {
@@ -15,16 +15,16 @@ sequelize = new Sequelize(
       },
     },
   }
-);
+); */
 
-/* //Se hace la conexion a la db
+//Se hace la conexion a la db
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dogs`,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
-); */
+);
 
 //se obtiene la ultima porcion del path
 const basename = path.basename(__filename);
