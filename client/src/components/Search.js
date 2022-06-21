@@ -8,20 +8,21 @@ import FilterOption from "./FilterOptions";
 import Navigator from "./Navigator";
 
 export default function Search() {
-  const [breedName, setBreedName] = useState("");
+  const [searchBreed, setSearchBreed] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(true);
   const refForm = useRef();
   const dispatch = useDispatch();
 
   //Deberia ejecutarse solo una vez
   useEffect(() => {
-    dispatch(getAllBreeds());
+    dispatch(getAllBreeds()).then(() => setLoading(false));
     dispatch(getTemperaments());
   }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getAllBreeds(breedName)).then(() => {
+    dispatch(getAllBreeds(searchBreed)).then(() => {
       setCurrentPage(0);
       refForm.current.reset();
     });
@@ -35,8 +36,8 @@ export default function Search() {
           <input
             type="text"
             placeholder="Enter breed name"
-            value={breedName}
-            onChange={(e) => setBreedName(e.target.value)}
+            value={searchBreed}
+            onChange={(e) => setSearchBreed(e.target.value)}
             pattern="[A-Za-z\s]{0,30}"
             onInvalid={(e) => {
               e.target.setCustomValidity(
@@ -48,7 +49,11 @@ export default function Search() {
         </form>
       </div>
       <Conteiner>
-        <FilterOption setCurrentPage={setCurrentPage} refForm={refForm} />
+        <FilterOption
+          setCurrentPage={setCurrentPage}
+          refForm={refForm}
+          loading={loading}
+        />
         <Section>
           <Cards currentPage={currentPage} />
           <Navigator

@@ -14,10 +14,10 @@ const initialFilter = {
   temperaments: [],
 };
 
-export default function FilterOption({ setCurrentPage, refForm }) {
-  const [filter, setFilter] = useState(initialFilter);
-  const dispatch = useDispatch();
-  const temperaments = useSelector((state) => state.temperaments);
+export default function FilterOption({ setCurrentPage, refForm, loading }) {
+  const [filter, setFilter] = useState(initialFilter),
+    dispatch = useDispatch(),
+    temperaments = useSelector((state) => state.temperaments);
 
   useEffect(() => {
     if (filter.sort === "name") {
@@ -25,7 +25,6 @@ export default function FilterOption({ setCurrentPage, refForm }) {
     } else {
       dispatch(orderBreedsByWeight(filter));
     }
-    //Preguntar si entre el anterior filter y el actual se cambio solo temperaments o sort tambien
     if (filter.temperaments.length > 0) {
       dispatch(filterByTemp(filter.temperaments));
     }
@@ -75,6 +74,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               value="name"
               defaultChecked={true}
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="nameInput">Name</label>
           </div>
@@ -85,6 +85,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               id="weightInput"
               value="weight"
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="weightInput">Weight</label>
           </div>
@@ -100,6 +101,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               value="ascendent"
               defaultChecked={true}
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="ascendentInput">Ascendent</label>
           </div>
@@ -110,6 +112,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               id="descendentInput"
               value="descendent"
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="descendentInput">Descendent</label>
           </div>
@@ -125,6 +128,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               defaultChecked={true}
               value="all"
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="allInput">All</label>
           </div>
@@ -135,6 +139,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               id="existInput"
               value="exist"
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="existInput">Exist</label>
           </div>
@@ -145,6 +150,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
               id="noExistInput"
               value="noexist"
               onChange={handleChange}
+              disabled={loading ? true : false}
             />
             <label htmlFor="noExistInput">No-exist</label>
           </div>
@@ -160,6 +166,7 @@ export default function FilterOption({ setCurrentPage, refForm }) {
                   value={temperament.name}
                   id={temperament.id}
                   onChange={handleCheck}
+                  disabled={loading ? true : false}
                 />
                 <label htmlFor={temperament.id}>{temperament.name}</label>
                 <br />
