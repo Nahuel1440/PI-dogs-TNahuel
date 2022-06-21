@@ -21,9 +21,12 @@ export default function BreedCreate() {
 }
 const MainConteiner = styled.div`
   display: flex;
-  padding-top: 120px;
+  padding: 120px 0 50px 0;
   margin: 0 60px 0 60px;
   justify-content: space-evenly;
+  @media screen and (max-width: 700px) {
+    margin: 0 20px 0 20px;
+  }
 `;
 const FormConteiner = styled.div`
   width: 60%;

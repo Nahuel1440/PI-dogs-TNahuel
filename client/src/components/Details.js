@@ -87,6 +87,9 @@ const CardDetails = styled.div`
     .infoConteiner {
       font-size: 12px;
     }
+    img {
+      height: 360px;
+    }
   }
   button {
     position: absolute;

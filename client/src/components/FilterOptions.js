@@ -184,5 +184,8 @@ const AsideBar = styled.aside`
     width: 100%;
     height: 500px;
     overflow-y: scroll;
+    @media screen and (max-width: 700px) {
+      height: 150px;
+    }
   }
 `;

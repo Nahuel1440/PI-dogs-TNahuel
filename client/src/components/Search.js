@@ -62,6 +62,7 @@ const Div = styled.div`
   margin: 0 60px 0 60px;
   @media screen and (max-width: 700px) {
     font-size: 15px;
+    margin: 0 30px 0 30px;
   }
   .searchBar {
     display: flex;
@@ -75,9 +76,6 @@ const Div = styled.div`
       &:invalid {
         border-color: red;
       }
-    }
-    @media screen and (max-width: 700px) {
-      flex-direction: column;
     }
   }
 `;
