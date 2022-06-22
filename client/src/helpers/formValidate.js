@@ -25,9 +25,9 @@ const validate = (form) => {
     errors.weight_max = "max weight is required";
   }
   if (form.weight_min && form.weight_max) {
-    if (form.weight_min >= form.weight_max) {
+    if (Number(form.weight_min) >= Number(form.weight_max)) {
       errors.weight_min = "min weight must be less than weight max";
-      errors.weight_max = "max weight must be greater than <w></w>eight min";
+      errors.weight_max = "max weight must be greater than weight min";
     }
   }
 
@@ -46,7 +46,7 @@ const validate = (form) => {
   }
 
   if (form.height_min && form.height_max) {
-    if (form.height_min >= form.height_max) {
+    if (Number(form.height_min) >= Number(form.height_max)) {
       errors.height_min = "min height must be less than height max";
       errors.height_max = "max height must be greater than height min";
     }
@@ -64,7 +64,7 @@ const validate = (form) => {
     }
   }
   if (form.life_min && form.life_max) {
-    if (form.life_min >= form.life_max) {
+    if (Number(form.life_min) >= Number(form.life_max)) {
       errors.life_min = "min life must be less than life max";
       errors.life_max = "max life must be greater than life min";
     }
