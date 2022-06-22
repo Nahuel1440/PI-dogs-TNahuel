@@ -24,10 +24,12 @@ const getAllBreeds = async (req, res, next) => {
     if (allBreeds.length) {
       res.json(allBreeds);
     } else {
-      throw new Error("No breeds found with that name");
+      const err = new Error("No breeds found with that name");
+      err.status = 404;
+      throw err;
     }
   } catch (err) {
-    next({ message: err.message, status: 404 });
+    next(err);
   }
 };
 
@@ -50,9 +52,13 @@ const getBreedById = async (req, res, next) => {
       [breedFound] = normalizeTemper([breedFound]);
     }
     if (breedFound) res.json(breedFound);
-    else throw new Error("Not found");
+    else {
+      const err = new Error("Not found");
+      err.status = 404;
+      throw err;
+    }
   } catch (err) {
-    next({ message: err.message, status: 404 });
+    next(err);
   }
 };
 
