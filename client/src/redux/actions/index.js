@@ -10,9 +10,14 @@ export const getAllBreeds =
   (name = "") =>
   (dispatch) => {
     return fetch(`http://localhost:3001/dogs${name ? "?name=" + name : ""}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 404)
+          throw new Error("No matches were found for any breed");
+        if (response.status === 500) throw new Error("Server not working");
+        return response.json();
+      })
       .then((breeds) => dispatch({ type: GET_ALL_BREEDS, payload: breeds }))
-      .catch((err) => alert("No matches were found for any breed"));
+      .catch((err) => alert(err));
   };
 
 export const orderBreedsByName = ({ order, type }) => {
