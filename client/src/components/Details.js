@@ -114,10 +114,9 @@ const CardDetails = styled.div`
   @media screen and (max-width: 700px) {
     .infoConteiner {
       font-size: 12px;
+      padding: 10px 10px 10px 10px;
     }
-    img {
-      height: 360px;
-    }
+    min-height: 300px;
   }
   .loading {
     text-align: center;
