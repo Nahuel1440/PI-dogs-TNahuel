@@ -131,4 +131,7 @@ const IntroConteiner = styled.article`
       background-color: black;
     }
   }
+  @media screen and (max-width: 700px) {
+    margin-bottom: 120px;
+  }
 `;
