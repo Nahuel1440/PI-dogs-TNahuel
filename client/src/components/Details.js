@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { clearBreed, getBreed } from "../redux/actions";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import backImg from "../img/back-right.png";
+
 export default function Details() {
   const { id } = useParams(),
     dispatch = useDispatch(),
@@ -21,7 +23,7 @@ export default function Details() {
       <MainConteiner>
         <CardDetails>
           <Link to="/search">
-            <button>←</button>
+            <input type="image" src={backImg} alt="arrow back" />
           </Link>
           {Object.keys(breed).length > 0 ? (
             <>
@@ -93,8 +95,8 @@ const CardDetails = styled.div`
     object-fit: cover;
     aspect-ratio: 1.2/1;
   }
-  button {
-    font-size: 20px;
+  input[type="image"] {
+    padding: 8px;
     position: absolute;
     height: 35px;
     width: 35px;

@@ -4,6 +4,9 @@ import img2 from "../img/img2.jpg";
 import img3 from "../img/img3.jpg";
 import img4 from "../img/img4.jpg";
 import { Link } from "react-router-dom";
+import arrowDown from "../img/arrow-down.png";
+import arrowTop from "../img/arrow-top.png";
+
 export default function Home() {
   return (
     <>
@@ -14,7 +17,7 @@ export default function Home() {
           </header>
         </div>
         <a href="#2" className="btnMove">
-          <button>⬇</button>
+          <input type="image" src={arrowDown} alt="arrow down" />
         </a>
       </Section>
       <Section id="2" style={{ backgroundImage: `url(${img4})` }}>
@@ -30,7 +33,7 @@ export default function Home() {
           </Link>
         </IntroConteiner>
         <a href="#3" className="btnMove">
-          <button>⬇</button>
+          <input type="image" src={arrowDown} alt="arrow down" />
         </a>
       </Section>
       <Section id="3" style={{ backgroundImage: `url(${img3})` }}>
@@ -46,7 +49,7 @@ export default function Home() {
           </Link>
         </IntroConteiner>
         <a href="#1" className="btnMove">
-          <button>⬆</button>
+          <input type="image" src={arrowTop} alt="arrow top" />
         </a>
       </Section>
     </>
@@ -99,7 +102,8 @@ const Section = styled.section`
     @media screen and (max-width: 700px) {
       top: 80%;
     }
-    button {
+    input[type="image"] {
+      padding: 10px;
       width: 40px;
       height: 40px;
       font-size: 20px;
@@ -110,7 +114,7 @@ const Section = styled.section`
       cursor: pointer;
       &:hover {
         background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid white;
+        border: none;
       }
     }
   }
