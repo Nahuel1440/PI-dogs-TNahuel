@@ -10,6 +10,19 @@ describe("Breed model", () => {
   describe("Validators", () => {
     beforeEach(() => Breed.sync({ force: true }));
 
+    describe("id", () => {
+      it("The id must be of type uuid", (done) => {
+        Breed.create({ name: "Pug", height: "23 - 43", weight: "12 - 43" })
+          .then((breed) =>
+            expect(breed.id).to.match(
+              /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+            )
+          )
+          .then(() => done())
+          .catch(() => done(new Error("id must be of type uuid")));
+      });
+    });
+
     describe("name", () => {
       it("should throw an error if name is null", (done) => {
         Breed.create({ height: "23 - 43", weight: "12 - 43" })
