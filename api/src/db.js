@@ -3,10 +3,10 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const upTempToDb = require("./helpers/upTempToDb");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, URI } = process.env;
 
 /* sequelize = new Sequelize(
-  "postgres://glbhsqoebfoyge:2dc7e248996608de73174d004d06e9a89e06cfc98cdcd585a10e398920acf531@ec2-34-198-186-145.compute-1.amazonaws.com:5432/dduahkgqrgracl",
+  URI,
   {
     dialectOptions: {
       ssl: {
