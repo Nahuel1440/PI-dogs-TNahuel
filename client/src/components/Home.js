@@ -13,7 +13,7 @@ export default function Home() {
       <Section id="1" style={{ backgroundImage: `url(${img2})` }}>
         <div style={{ zIndex: 1 }}>
           <header>
-            <h1>Welcome the dogs page</h1>
+            <h1>Welcome to the dogs page</h1>
           </header>
         </div>
         <a href="#2" className="btnMove">
@@ -25,8 +25,8 @@ export default function Home() {
           <h2>Search dog breeds</h2>
           <p>
             You can search for all available dog breeds in our database. This
-            tool can help you find your ideal dog breed, based on its
-            temperament and size.
+            tool can help you find your ideal dog breed, based on weight,
+            height, temperament, and life expectancy.
           </p>
           <Link to="/search" onClick={() => window.scroll(0, 0)}>
             <button>Search</button>
