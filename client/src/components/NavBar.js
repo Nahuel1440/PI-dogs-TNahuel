@@ -16,11 +16,10 @@ export default function NavBar() {
         >
           <span>Dogs Page</span>
         </Link>
-        <ButtonMenu onClick={() => setClicked(!clicked)}>
-          {clicked ? "x" : "|||"}
-        </ButtonMenu>
+        <ButtonOpen onClick={() => setClicked(true)}>|||</ButtonOpen>
       </Header>
-      <Menu className={clicked ? "active" : ""}>
+      <Menu className={clicked ? "activeMenu" : ""}>
+        <ButtonClose onClick={() => setClicked(false)}>x</ButtonClose>
         <ul>
           <li>
             <Link
@@ -57,7 +56,7 @@ const Header = styled.header`
   padding: 0px 24px;
   position: absolute;
   background-color: transparent;
-  z-index: 3;
+  z-index: 2;
   & a {
     text-decoration: none;
     font-size: 25px;
@@ -65,9 +64,8 @@ const Header = styled.header`
   }
 `;
 
-const ButtonMenu = styled.button`
+const ButtonOpen = styled.button`
   transform: rotate(90deg);
-  color: white;
   background-color: rgba(255, 255, 255, 0.2);
   border: none;
   width: 35px;
@@ -81,17 +79,27 @@ const ButtonMenu = styled.button`
   }
 `;
 
+const ButtonClose = styled.button`
+  position: relative;
+  top: 3%;
+  left: 81%;
+  background-color: transparent;
+  font-size: 23px;
+  border: none;
+  font-family: Verdana;
+  cursor: pointer;
+`;
 const Menu = styled.nav`
   height: 100%;
   background-color: black;
   position: fixed;
   right: 0;
-  z-index: 2;
+  z-index: 3;
   width: 0px;
   transition: all 0.5s ease;
   & ul {
     list-style: none;
-    padding: 40px 40px;
+    padding: 10px 40px;
     li > a {
       text-align: left;
       display: block;
@@ -103,7 +111,7 @@ const Menu = styled.nav`
 `;
 
 const Div = styled.div`
-  .active {
+  .activeMenu {
     width: 300px;
   }
 `;

@@ -107,7 +107,6 @@ const Section = styled.section`
       width: 40px;
       height: 40px;
       font-size: 20px;
-      color: white;
       background-color: transparent;
       border: 1px solid white;
       border-radius: 50px;
@@ -127,7 +126,6 @@ const IntroConteiner = styled.article`
   padding: 15px 50px 30px 50px;
   button {
     background-color: transparent;
-    color: white;
     border: 1px solid white;
     padding: 5px 20px 5px 20px;
     cursor: pointer;
