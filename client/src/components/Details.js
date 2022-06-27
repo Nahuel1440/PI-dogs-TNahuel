@@ -105,7 +105,6 @@ const CardDetails = styled.div`
     border-bottom: 2px solid white;
     border-right: 2px solid white;
     cursor: pointer;
-    color: white;
     &:hover {
       background-color: black;
     }

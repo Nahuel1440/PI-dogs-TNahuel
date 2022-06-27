@@ -63,7 +63,6 @@ const Conteiner = styled.div`
     }
     button {
       background-color: transparent;
-      color: white;
       border: none;
       padding-left: 10px;
       padding-right: 10px;

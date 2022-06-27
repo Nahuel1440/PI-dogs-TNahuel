@@ -16,6 +16,6 @@ body {
   box-sizing: border-box;
   
 }
-h1, h2, h3, a, span, label, p {
+h1, h2, h3, a, span, label, p, button{
   color: white
 }

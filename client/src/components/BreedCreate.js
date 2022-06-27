@@ -32,9 +32,6 @@ const FormConteiner = styled.div`
   width: 60%;
   border: 2px solid white;
   text-align: center;
-  h1 {
-    color: white;
-  }
   @media screen and (max-width: 700px) {
     width: 100%;
   }

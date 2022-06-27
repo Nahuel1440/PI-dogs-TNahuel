@@ -194,7 +194,6 @@ const AsideBar = styled.aside`
     margin-top: 3px;
   }
   .multipleOpt {
-    color: white;
     border: 2px solid #ccc;
     width: 100%;
     height: 500px;

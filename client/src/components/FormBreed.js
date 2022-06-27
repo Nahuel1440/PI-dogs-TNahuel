@@ -329,7 +329,6 @@ const Form = styled.form`
     }
   }
   .multipleOptConteiner {
-    color: white;
     border: 2px solid #ccc;
     width: 100%;
     height: 100px;
