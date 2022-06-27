@@ -135,5 +135,7 @@ const IntroConteiner = styled.article`
   }
   @media screen and (max-width: 700px) {
     margin-bottom: 120px;
+    width: 85%;
+    padding: 15px 20px 30px 20px;
   }
 `;
