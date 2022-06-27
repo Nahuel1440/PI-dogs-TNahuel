@@ -70,9 +70,8 @@ const rootReducer = (state = initialStore, action) => {
         breeds: state.breeds.filter((breed) => {
           const breedTemp = breed.temperament;
           if (breedTemp) {
-            const tempArr = breedTemp.split(", ");
             const condition = action.payload.every((temp) =>
-              tempArr.includes(temp)
+              breedTemp.includes(temp)
             );
             if (condition) return true;
           }
