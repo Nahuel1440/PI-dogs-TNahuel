@@ -34,6 +34,8 @@ module.exports = (sequelize) => {
       validate: {
         isUrl: true,
       },
+      defaultValue:
+        "http://www.swissjustmx.com/wp-content/uploads/placeholder.jpg",
     },
   });
 };
