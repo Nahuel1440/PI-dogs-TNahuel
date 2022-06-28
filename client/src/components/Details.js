@@ -86,6 +86,7 @@ const MainConteiner = styled.div`
 
 const CardDetails = styled.div`
   display: flex;
+  background-color: rgba(0, 0, 0, 0.2);
   border: solid 2px white;
   border-radius: 5px;
   min-height: 400px;
