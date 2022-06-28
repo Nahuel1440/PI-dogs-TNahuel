@@ -299,14 +299,12 @@ const Form = styled.form`
     margin: 20px 0px 20px 0;
     width: 75px;
     height: 30px;
-    background-color: rgba(70, 70, 70, 255);
+    background-color: transparent;
     color: white;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid white;
     cursor: pointer;
     &:hover {
-      background-color: transparent;
-      border: solid 1px white;
+      background-color: black;
     }
   }
   .invalid {
