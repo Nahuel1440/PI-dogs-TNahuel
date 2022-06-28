@@ -6,7 +6,8 @@ body {
   height: auto;
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgba(25, 25 , 25, 1);
+    background-image: url(img/background2.png);
+    background-size: cover;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
