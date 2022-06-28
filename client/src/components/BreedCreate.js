@@ -13,25 +13,34 @@ export default function BreedCreate() {
   return (
     <MainConteiner>
       <FormConteiner>
-        <h1>---- Breed Form ----</h1>
+        <h1> Breed Form </h1>
         <FormBreed />
       </FormConteiner>
     </MainConteiner>
   );
 }
+
 const MainConteiner = styled.div`
   display: flex;
-  padding: 120px 0 50px 0;
+  padding: 95px 0 50px 0;
   margin: 0 60px 0 60px;
   justify-content: space-evenly;
   @media screen and (max-width: 700px) {
     margin: 0 20px 0 20px;
+    padding: 100px 0 50px 0;
   }
 `;
 const FormConteiner = styled.div`
   width: 60%;
+  background-color: rgba(0, 0, 0, 0.6);
   border: 2px solid white;
   text-align: center;
+  input[type="text"] {
+    font-size: inherit;
+  }
+  span {
+    font-size: 13px;
+  }
   @media screen and (max-width: 700px) {
     width: 100%;
   }

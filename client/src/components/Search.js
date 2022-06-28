@@ -67,7 +67,7 @@ export default function Search() {
 }
 
 const Div = styled.div`
-  padding: 80px 0 10px 0;
+  padding: 70px 0 10px 0;
   margin: 0 60px 0 60px;
   @media screen and (max-width: 700px) {
     font-size: 15px;

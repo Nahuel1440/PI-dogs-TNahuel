@@ -68,13 +68,14 @@ export default function FormBreed() {
           Name {errors.name ? <span>{`${errors.name}`}</span> : ""}
         </label>
         <div>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            /* required={true}
+          <div className="dualInputConteiner">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              /* required={true}
             pattern="[A-Za-z\s]{1,30}"
             onInvalid={(e) => {
               e.target.value === ""
@@ -84,7 +85,8 @@ export default function FormBreed() {
                   );
             }}
             onInput={(e) => e.target.setCustomValidity("")} */
-          />
+            />
+          </div>
         </div>
         <hr />
       </div>
@@ -230,20 +232,22 @@ export default function FormBreed() {
           {errors.image ? <span> {`${errors.image}`}</span> : ""}
         </label>
         <div>
-          <input
-            type="text"
-            placeholder="URL"
-            name="image"
-            value={form.image}
-            onChange={handleChange}
-            /* pattern="https://.+"
+          <div className="dualInputConteiner">
+            <input
+              type="text"
+              placeholder="URL"
+              name="image"
+              value={form.image}
+              onChange={handleChange}
+              /* pattern="https://.+"
             onInvalid={(e) => {
               e.target.setCustomValidity(
                 "The url must match the following format: https://example"
               );
             }}
             onInput={(e) => e.target.setCustomValidity("")} */
-          />
+            />
+          </div>
         </div>
         <hr />
       </div>
@@ -276,16 +280,14 @@ export default function FormBreed() {
 }
 
 const Form = styled.form`
-  margin-top: 50px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   span {
     color: red;
-    font-size: 14px;
   }
   input[type="text"] {
     width: 100%;
-    font-size: 17px;
     color: white;
     background-color: transparent;
     border: none;
@@ -313,7 +315,6 @@ const Form = styled.form`
     }
   }
   .itemForm {
-    font-size: 17px;
     margin-top: 30px;
     align-self: center;
     width: 90%;
