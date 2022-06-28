@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Card from "./Card";
 
-export default function Cards({ currentPage }) {
+export default function Cards({ currentPage, loading }) {
   const breeds = useSelector((state) => state.breeds);
   return (
     <>
-      {breeds.length !== 0 ? (
+      {breeds.length !== 0 && !loading ? (
         <CardsConteiner>
           {breeds.slice(8 * currentPage, 8 * currentPage + 8).map((breed) => (
             <Card
@@ -20,6 +20,10 @@ export default function Cards({ currentPage }) {
             />
           ))}
         </CardsConteiner>
+      ) : loading ? (
+        <div style={{ textAlign: "center" }}>
+          <h2>Loading...</h2>
+        </div>
       ) : (
         <div style={{ textAlign: "center" }}>
           <h2>No found any breed</h2>

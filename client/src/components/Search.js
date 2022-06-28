@@ -55,7 +55,7 @@ export default function Search() {
           loading={loading}
         />
         <Section>
-          <Cards currentPage={currentPage} />
+          <Cards currentPage={currentPage} loading={loading} />
           <Navigator
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
