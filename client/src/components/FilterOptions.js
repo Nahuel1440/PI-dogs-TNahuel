@@ -6,6 +6,8 @@ import {
   orderBreedsByName,
   orderBreedsByWeight,
 } from "../redux/actions";
+import arrowDown from "../img/arrow-down-filter.png";
+import arrowTop from "../img/arrow-top-filter.png";
 
 const initialFilter = {
   sort: "name",
@@ -15,6 +17,7 @@ const initialFilter = {
 };
 
 export default function FilterOption({ setCurrentPage, refForm, loading }) {
+  const [clicked, setClicked] = useState(false);
   const [filter, setFilter] = useState(initialFilter),
     dispatch = useDispatch(),
     temperaments = useSelector((state) => state.temperaments);
@@ -29,7 +32,6 @@ export default function FilterOption({ setCurrentPage, refForm, loading }) {
       dispatch(filterByTemp(filter.temperaments));
     }
   }, [filter, dispatch]);
-  //Porque necesita usar a dispatch como dependencia???
 
   const handleChange = (e) => {
     setFilter({
@@ -61,9 +63,20 @@ export default function FilterOption({ setCurrentPage, refForm, loading }) {
   };
 
   return (
-    <AsideBar>
-      <h3>Filter options</h3>
-      <form ref={refForm} onReset={handleReset}>
+    <AsideBar onClick={() => setClicked(!clicked)}>
+      <div className="title">
+        <h3>Filter options</h3>
+        {!clicked ? (
+          <img src={arrowDown} alt="arrowDown" />
+        ) : (
+          <img src={arrowTop} alt="arrowTop" />
+        )}
+      </div>
+      <form
+        className={clicked ? "visible" : ""}
+        ref={refForm}
+        onReset={handleReset}
+      >
         <span>Sort by: </span>
         <div className="filterItem">
           <div>
@@ -186,7 +199,20 @@ const AsideBar = styled.aside`
   width: 20%;
   background-color: rgba(70, 70, 70, 255);
   @media screen and (max-width: 700px) {
+    border-radius: 0;
     width: 100%;
+    padding: 0 20px 0 20px;
+    form {
+      height: 0px;
+      display: none;
+    }
+    .visible {
+      height: auto;
+      display: contents;
+      .multipleOpt {
+        margin-bottom: 20px;
+      }
+    }
   }
   .filterItem {
     display: flex;
@@ -200,6 +226,27 @@ const AsideBar = styled.aside`
     overflow-y: scroll;
     @media screen and (max-width: 700px) {
       height: 150px;
+    }
+  }
+  .title {
+    img {
+      display: none;
+    }
+    @media screen and (max-width: 700px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        display: block;
+        height: 7px;
+        width: auto;
+      }
+      h3 {
+        font-size: 16px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
     }
   }
 `;
