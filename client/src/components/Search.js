@@ -59,6 +59,7 @@ export default function Search() {
           <Navigator
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            loading={loading}
           />
         </Section>
       </Conteiner>
