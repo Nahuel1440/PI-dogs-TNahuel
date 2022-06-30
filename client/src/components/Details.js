@@ -29,7 +29,7 @@ export default function Details() {
             <>
               <img src={breed.image} alt="None" />
               <div className="infoConteiner">
-                <h1>{breed.name}</h1>
+                <h2>{breed.name}</h2>
                 <div>
                   <span>
                     <b>Height: </b>
@@ -77,10 +77,11 @@ export default function Details() {
 }
 
 const MainConteiner = styled.div`
-  padding-top: 140px;
+  padding-top: 130px;
   margin: 0 180px 0 180px;
   @media screen and (max-width: 700px) {
-    margin: 0 20px 0 20px;
+    padding-top: 95px;
+    margin: 0 20px 50px 20px;
   }
 `;
 
@@ -120,8 +121,8 @@ const CardDetails = styled.div`
       width: 100%;
     }
     .infoConteiner {
-      font-size: 11px;
       padding: 0 10px 10px 10px;
+      font-size: 15px;
     }
   }
   .loading {
