@@ -114,11 +114,15 @@ const CardDetails = styled.div`
     padding: 10px 30px 30px 30px;
   }
   @media screen and (max-width: 700px) {
-    .infoConteiner {
-      font-size: 12px;
-      padding: 10px 10px 10px 10px;
-    }
+    flex-direction: column;
     min-height: 300px;
+    img {
+      width: 100%;
+    }
+    .infoConteiner {
+      font-size: 11px;
+      padding: 0 10px 10px 10px;
+    }
   }
   .loading {
     text-align: center;
