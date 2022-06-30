@@ -6,6 +6,7 @@ import { getAllBreeds, getTemperaments } from "../redux/actions";
 import Cards from "./Cards";
 import FilterOption from "./FilterOptions";
 import Navigator from "./Navigator";
+import searchIcon from "../img/search-icon.png";
 
 export default function Search() {
   const [searchBreed, setSearchBreed] = useState("");
@@ -38,7 +39,7 @@ export default function Search() {
             placeholder="Enter breed name"
             value={searchBreed}
             onChange={(e) => setSearchBreed(e.target.value)}
-            pattern="[A-Za-z\s]{0,30}"
+            pattern="[A-Za-z\sñÑ]{0,30}"
             onInvalid={(e) => {
               e.target.setCustomValidity(
                 "The name breed should only contains letters."
@@ -46,6 +47,7 @@ export default function Search() {
             }}
             onInput={(e) => e.target.setCustomValidity("")}
           />
+          <img src={searchIcon} alt="searchIcon" />
         </form>
       </div>
       <Conteiner>
@@ -78,13 +80,38 @@ const Div = styled.div`
     display: flex;
     justify-content: space-between;
     form {
+      position: relative;
       align-self: center;
+      img {
+        position: absolute;
+        right: 185px;
+        top: 5px;
+        height: 20px;
+        width: auto;
+        filter: brightness(2);
+        pointer-events: none;
+      }
     }
     input {
-      padding-left: 5px;
-      padding: 5px 7px 5px 7px;
+      padding: 5px 7px 5px 35px;
       &:invalid {
         border-color: red;
+      }
+    }
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+      form {
+        align-self: auto;
+        input {
+          font-size: 15px;
+          width: 100%;
+          padding: 7px 7px 7px 17px;
+        }
+        margin-bottom: 10px;
+        img {
+          right: 15px;
+          top: 9px;
+        }
       }
     }
   }
