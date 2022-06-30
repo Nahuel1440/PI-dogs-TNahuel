@@ -108,6 +108,11 @@ const Conteiner = styled.div`
       &:hover {
         background-color: rgba(255, 255, 255, 0.1);
       }
+      @media screen and (max-width: 700px) {
+        &:hover {
+          background-color: transparent;
+        }
+      }
     }
   }
 `;
