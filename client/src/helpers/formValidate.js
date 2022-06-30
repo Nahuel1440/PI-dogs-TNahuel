@@ -1,12 +1,14 @@
 const validate = (form) => {
   const errors = {},
-    regexName = /^[a-zA-Z ]*$/,
+    regexName = /^[a-zA-Z ]{1,30}$/,
     regexUrl = /https:\/\/.+/,
     regexNum = /^[0-9]*$/;
 
   if (form.name) {
     if (!regexName.test(form.name))
       errors.name = "name should only contains letters";
+    if (form.name.length > 30)
+      errors.name = "The name can only contain a maximum of 30 letters";
   } else {
     errors.name = "name is required";
   }
