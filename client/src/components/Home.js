@@ -6,59 +6,54 @@ import img4 from "../img/img4.jpg";
 import { Link } from "react-router-dom";
 import arrowDown from "../img/arrow-down.png";
 import arrowTop from "../img/arrow-top.png";
-import LazyLoad from "react-lazyload";
 
 export default function Home() {
   return (
     <>
-      <LazyLoad height={"100vh"} once={true}>
-        <Section id="1" style={{ backgroundImage: `url(${img2})` }}>
-          <div style={{ zIndex: 1 }}>
-            <header>
-              <h1>Welcome to the dogs page</h1>
-            </header>
-          </div>
-          <a href="#2" className="btnMove">
-            <input type="image" src={arrowDown} alt="arrow down" />
-          </a>
-        </Section>
-      </LazyLoad>
-      <LazyLoad height={"100vh"} offset={100} once={true}>
-        <Section id="2" style={{ backgroundImage: `url(${img4})` }}>
-          <IntroConteiner>
-            <h2>Search dog breeds</h2>
-            <p>
-              You can search for all available dog breeds in our database. This
-              tool can help you find your ideal dog breed, based on weight,
-              height, temperament, and life expectancy.
-            </p>
-            <Link to="/search" onClick={() => window.scroll(0, 0)}>
-              <button>Search</button>
-            </Link>
-          </IntroConteiner>
-          <a href="#3" className="btnMove">
-            <input type="image" src={arrowDown} alt="arrow down" />
-          </a>
-        </Section>
-      </LazyLoad>
-      <LazyLoad height={"100vh"} offset={100} once={true}>
-        <Section id="3" style={{ backgroundImage: `url(${img3})` }}>
-          <IntroConteiner>
-            <h2>Create your dog breed</h2>
-            <p>
-              You can have fun creating your own dog breed, or if you think
-              there is something missing from our database, you can add it here.
-              Then you can see it in the search section. Try it!
-            </p>
-            <Link to="/create" onClick={() => window.scroll(0, 0)}>
-              <button>Create</button>
-            </Link>
-          </IntroConteiner>
-          <a href="#1" className="btnMove">
-            <input type="image" src={arrowTop} alt="arrow top" />
-          </a>
-        </Section>
-      </LazyLoad>
+      <Section id="1" style={{ backgroundImage: `url(${img2})` }}>
+        <div style={{ zIndex: 1 }}>
+          <header>
+            <h1>Welcome to the dogs page</h1>
+          </header>
+        </div>
+        <a href="#2" className="btnMove">
+          <input type="image" src={arrowDown} alt="arrow down" />
+        </a>
+      </Section>
+
+      <Section id="2" style={{ backgroundImage: `url(${img4})` }}>
+        <IntroConteiner>
+          <h2>Search dog breeds</h2>
+          <p>
+            You can search for all available dog breeds in our database. This
+            tool can help you find your ideal dog breed, based on weight,
+            height, temperament, and life expectancy.
+          </p>
+          <Link to="/search" onClick={() => window.scroll(0, 0)}>
+            <button>Search</button>
+          </Link>
+        </IntroConteiner>
+        <a href="#3" className="btnMove">
+          <input type="image" src={arrowDown} alt="arrow down" />
+        </a>
+      </Section>
+
+      <Section id="3" style={{ backgroundImage: `url(${img3})` }}>
+        <IntroConteiner>
+          <h2>Create your dog breed</h2>
+          <p>
+            You can have fun creating your own dog breed, or if you think there
+            is something missing from our database, you can add it here. Then
+            you can see it in the search section. Try it!
+          </p>
+          <Link to="/create" onClick={() => window.scroll(0, 0)}>
+            <button>Create</button>
+          </Link>
+        </IntroConteiner>
+        <a href="#1" className="btnMove">
+          <input type="image" src={arrowTop} alt="arrow top" />
+        </a>
+      </Section>
     </>
   );
 }
