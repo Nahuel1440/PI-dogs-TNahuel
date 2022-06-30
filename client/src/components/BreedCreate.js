@@ -13,7 +13,7 @@ export default function BreedCreate() {
   return (
     <MainConteiner>
       <FormConteiner>
-        <h1> Breed Form </h1>
+        <h2> Breed Form </h2>
         <FormBreed />
       </FormConteiner>
     </MainConteiner>
@@ -27,7 +27,7 @@ const MainConteiner = styled.div`
   justify-content: space-evenly;
   @media screen and (max-width: 700px) {
     margin: 0 20px 0 20px;
-    padding: 100px 0 50px 0;
+    padding: 90px 0 50px 0;
   }
 `;
 const FormConteiner = styled.div`
