@@ -2,8 +2,6 @@
 
 <img height="200" src="./dog.png" />
 
-Link de la página: https://dogspage.herokuapp.com/
-
 ## Objetivos del Proyecto
 
 - Construir una App utlizando Reactjs, Redux, Nodejs y Sequelize.
