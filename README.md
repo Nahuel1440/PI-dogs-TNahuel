@@ -139,3 +139,12 @@ Nota: Los perros obtenidos desde la api no son almacenados en la base de datos, 
 - [x] Modelos con sus test respectivos.
 - [x] Rutas con sus test respectivos.
 - [ ] Componentes de react con sus test respectivos. (En proceso)
+
+## Algunos problemas interesantes con los que me encontré
+- Cuando realizaba una busqueda de alguna raza por el input, en la ruta de busqueda, los filtros y el estado de su respectivo componente no se reseteaban, y las razas que me traía la busqueda venian filtradas por las opciones iniciales. Este no era un comportamiento deseable. El principal problema fue que el input estaba en el componente padre, y el formulario del filtro se encontraba en un componente hijo, asi que no encontraba forma de poder resetearlo. Encontré dos posibles opciones para hacerlo:
+
+  -Opcion 1: Llevar el estado del componente del formulario a un estado global, que en este caso podía hacerlo porque use redux. La única ventaja que me dispondría era resetear el estado, pero el formulario quedaría de la misma forma, así que de todas formas iba a tener que usar lo que utilice en la siguiente opción.
+  
+  -Opcion 2 (Y la que use): Usar el hook useRef en el componente padre, crear una referencia, pasarla por props al componente hijo que utilice para hacer el filtro, y vincular el form con esa referencia, entonces cada vez que se mandaba petición de la busqueda, pude desde el componente padre, usar el método HTMLFormElement.reset() que restaura los elementos de un formulario a sus valores por defecto. Y en el componente hijo use en el formulario el evento onReset(), donde indique que cada vez que se resetee el formulario, también se reinicie el estado vinculado.
+
+- Como la app demora unos segundos en traer a todos las razas, en esos segundos el usuario podía manipular los filtros, y cuando ya podía ver los perros no se aplicaba el filtro que habia elegido. Para solucionar esto, use un estado que era "true" si se seguia esperando respuesta de la petición, en este caso deshabilite los input de los filtros y cuando ya se recibe la respuesta, el estado cambia a false, y ya se encuentran disponibles los filtros.
