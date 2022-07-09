@@ -52,8 +52,8 @@ La idea general fue crear una aplicación en la cual se puedan ver distintas raz
 
 ### Frontend
 Nota: El diseño general de la página es completamente responsive! Así que no tendrán problemas en verla a traves de sus móviles :)
- 
-Se desarrolló una aplicación con React/Redux que contiene las siguientes pantallas/rutas: 
+
+Se desarrolló una SPA (Single Page Application) con React/Redux que contiene las siguientes pantallas/rutas: 
 
 __Home__: Una landing page que contiene:
 
